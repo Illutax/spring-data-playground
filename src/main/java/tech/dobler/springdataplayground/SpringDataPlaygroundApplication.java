@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringDataPlaygroundApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringDataPlaygroundApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringDataPlaygroundApplication.class, args);
+    }
 
 }
