@@ -1,10 +1,15 @@
 package tech.dobler.springdataplayground;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.ToString;
+import tech.dobler.springdataplayground.domainvalues.Address;
 import tech.dobler.springdataplayground.domainvalues.PersonId;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "person")
@@ -15,11 +20,14 @@ public class Person {
     private final PersonId id;
     private final String firstName;
     private final String lastName;
+    @ElementCollection
+    private List<Address> addressList;
 
-    public Person(PersonId id, String firstName, String lastName) {
+    public Person(PersonId id, String firstName, String lastName, List<Address> addressList) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.addressList = addressList;
     }
 
     /**
@@ -30,6 +38,7 @@ public class Person {
         this.id = null;
         this.firstName = null;
         this.lastName = null;
+        this.addressList = new ArrayList<>();
     }
 
     @Override

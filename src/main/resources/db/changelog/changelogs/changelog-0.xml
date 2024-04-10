@@ -17,4 +17,12 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet id="1" author="admin">
+        <createTable tableName="person_address_list">
+            <column name="person_id" type="VARCHAR(255)"/>
+            <column name="address_list" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
