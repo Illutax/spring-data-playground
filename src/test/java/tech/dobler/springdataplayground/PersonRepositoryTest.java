@@ -27,7 +27,7 @@ class PersonRepositoryTest {
         var id = PersonId.create();
         var p = new Person(id, "Hello", "World", List.of(
                 new Address("Hamburger Straße", "123"),
-                new Address("Hamburger Straße", "123")
+                new Address("Hamburger Straße", "125")
         ));
         repository.save(p);
 

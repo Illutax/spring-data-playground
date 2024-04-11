@@ -1,26 +1,24 @@
 package tech.dobler.springdataplayground;
 
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.ToString;
 import tech.dobler.springdataplayground.domainvalues.Address;
 import tech.dobler.springdataplayground.domainvalues.PersonId;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "person")
 @ToString
-
 public class Person {
     @Id
     private final PersonId id;
     private final String firstName;
     private final String lastName;
-    @ElementCollection
+    @ElementCollection(targetClass = Address.class)
+    @JoinTable(name = "person_address_list", joinColumns = @JoinColumn(name = "person_id"))
     private List<Address> addressList;
 
     public Person(PersonId id, String firstName, String lastName, List<Address> addressList) {
@@ -33,6 +31,7 @@ public class Person {
     /**
      * @deprecated for Hibernate
      */
+    @SuppressWarnings("DefaultAnnotationParam")
     @Deprecated(forRemoval = false)
     protected Person() {
         this.id = null;
@@ -48,11 +47,11 @@ public class Person {
 
         Person person = (Person) o;
 
-        return id.equals(person.id);
+        return Objects.equals(id, person.id);
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return Objects.hashCode(id);
     }
 }
